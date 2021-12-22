@@ -24,9 +24,17 @@ tasks:
   status:
     - test -f ~/bin/nuv
 
-  
+
 
   build:
+    deps: [gen-openwhisk-cli-internationalization]
     dir: ./nuv
-    cmds: 
+    cmds:
       - go build -o ~/bin/nuv
+
+
+  gen-openwhisk-cli-internationalization:
+    dir: ./openwhisk-cli
+    cmds:
+      - go install github.com/jteeuwen/go-bindata/...
+      - go-bindata -pkg wski18n -o wski18n/i18n_resources.go wski18n/resources

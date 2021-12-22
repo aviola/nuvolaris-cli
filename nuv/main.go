@@ -17,8 +17,15 @@
 //
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/apache/openwhisk-cli/commands"
+)
 
 func main() {
-  fmt.Println("Hello")
+	fmt.Println("nuv statically runs \"wsk help action\". See the output below.\n")
+
+	commands.WskCmd.SetArgs([]string{"help", "action"})
+	commands.WskCmd.Execute()
 }
